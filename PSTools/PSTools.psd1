@@ -5,6 +5,7 @@
     RequiredModules = @()
     FunctionsToExport = @(
         'New-HashSlice'
+        'Get-ValueOrDefault'
     )
     AliasesToExport = @()
 }
