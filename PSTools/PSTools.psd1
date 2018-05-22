@@ -4,8 +4,9 @@
     GUID = 'fbaca439-5fc5-4ac9-ab35-d371d0d1d148'
     RequiredModules = @()
     FunctionsToExport = @(
-        'New-HashSlice'
+        'Get-MemberOrDefault'
         'Get-ValueOrDefault'
+        'New-HashSlice'
     )
     AliasesToExport = @()
 }

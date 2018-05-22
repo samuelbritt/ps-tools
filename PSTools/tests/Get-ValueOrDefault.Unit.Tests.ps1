@@ -5,61 +5,26 @@ Import-Module "$(Join-Path $modulePath $moduleName).psd1" -Force
 Describe 'Get-ValueOrDefault' {
     Set-StrictMode -Version Latest
 
-    BeforeEach {
-        $InputObject = New-Object psobject -Property @{
-            Spam = "eggs"
-            Foo = $null
-        }
+    It 'Handles non-null objects with no default' {
+        $now = Get-Date
+        Get-ValueOrDefault -InputObject $now -Default $now.AddDays(1) | Should Be $now
     }
 
-    $testCases = @(
-        @{
-            Name = "Valid member name"
-            MemberName = 'Spam'
-            Default = $null
-            ExpectedResult = "eggs"
-        }
-        @{
-            Name = "Null-valued member with no default"
-            MemberName = 'Foo'
-            Default = $null
-            ExpectedResult = $null
-        }
-        @{
-            Name = "Null-valued member with default"
-            MemberName = 'Foo'
-            Default = 'bacon'
-            ExpectedResult = 'bacon'
-        }
-        @{
-            Name = "Invalid member name with no default"
-            MemberName = '__not_a_member__'
-            Default = $null
-            ExpectedResult = $null
-        }
-        @{
-            Name = "Invalid member name with default"
-            MemberName = '__not_a_member__'
-            Default = 'bacon'
-            ExpectedResult = 'bacon'
-        }
-    )
-
-    It "Gets <Name>" -TestCases $testCases {
-        param($Name, $MemberName, $Default, $ExpectedResult)
-        $params = @{
-            Name = $MemberName
-        }
-
-        if ($Default)
-        {
-            $params['Default'] = $Default
-        }
-
-        $InputObject | Get-ValueOrDefault @params | Should BeExactly $ExpectedResult
+    It 'Handles null objects with no default' {
+        Get-ValueOrDefault -InputObject $null | Should Be $null
     }
 
-    It 'Handles null input' {
-        Get-ValueOrDefault -InputObject $null -Name 'test' | Should Be $null
+    It 'Handles null objects with default' {
+        Get-ValueOrDefault -InputObject $null -Default 'bacon' | Should Be 'bacon'
+    }
+
+    It 'Handles null objects with default via pipeline' {
+        $inputObject = $null
+        $inputObject | Get-ValueOrDefault -Default 'bacon' | Should Be 'bacon'
+    }
+
+    It 'Handles null objects with default via pipeline and positional parameters' {
+        $inputObject = $null
+        $inputObject | Get-ValueOrDefault 'bacon' | Should Be 'bacon'
     }
 }
