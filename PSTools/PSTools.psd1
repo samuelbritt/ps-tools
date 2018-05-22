@@ -7,6 +7,7 @@
         'Get-MemberOrDefault'
         'Get-ValueOrDefault'
         'New-HashSlice'
+        'Test-Admin'
     )
     AliasesToExport = @()
 }
