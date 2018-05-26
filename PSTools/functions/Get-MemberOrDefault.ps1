@@ -4,9 +4,9 @@ function Get-MemberOrDefault
     param(
         [Parameter(ValueFromPipeline)]
         [psobject] $InputObject,
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory, Position = 0)]
         [string] $Name,
-        [Parameter(Position = 0)]
+        [Parameter()]
         [object] $Default = $null
     )
     process
