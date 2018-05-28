@@ -4,7 +4,7 @@ function Get-ValueOrDefault
     param(
         [Parameter(ValueFromPipeline)]
         [object] $InputObject,
-        [Parameter(Position = 0)]
+        [Parameter()]
         [object] $Default = $null
     )
     process

@@ -23,8 +23,8 @@ Describe 'Get-ValueOrDefault' {
         $inputObject | Get-ValueOrDefault -Default 'bacon' | Should Be 'bacon'
     }
 
-    It 'Handles null objects with default via pipeline and positional parameters' {
+    It 'Handles null objects with default and positional parameters' {
         $inputObject = $null
-        $inputObject | Get-ValueOrDefault 'bacon' | Should Be 'bacon'
+        Get-ValueOrDefault $inputObject 'bacon' | Should Be 'bacon'
     }
 }

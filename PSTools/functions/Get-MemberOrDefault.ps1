@@ -18,12 +18,12 @@ function Get-MemberOrDefault
         if ($InputObject -ne $null)
         {
             $memberValue = $null
-            if ($InputObject | Get-Member -Name $Name -MemberType NoteProperty)
+            if ($InputObject | Get-Member -Name $Name -MemberType Property, NoteProperty)
             {
                 $memberValue = $InputObject.$Name
             }
         }
 
-        $memberValue | Get-ValueOrDefault $Default
+        $memberValue | Get-ValueOrDefault -Default $Default
     }
 }
