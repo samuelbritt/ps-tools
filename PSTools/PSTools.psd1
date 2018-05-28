@@ -9,6 +9,7 @@
         'Get-ValueOrDefault'
         'New-HashSlice'
         'Test-Admin'
+        'Assert-Path'
     )
     AliasesToExport = @()
 }
