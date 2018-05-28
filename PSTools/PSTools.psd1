@@ -7,6 +7,7 @@
         'ConvertTo-Hashtable'
         'Get-MemberOrDefault'
         'Get-ValueOrDefault'
+        'Join-Paths'
         'New-HashSlice'
         'Test-Admin'
         'Assert-Path'
